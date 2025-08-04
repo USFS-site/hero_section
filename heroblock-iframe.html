@@ -3,20 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Upcoming Events (Embed)</title>
+  <title>Hero Events Embed</title>
+
+  <!-- Sidearm Core CSS -->
   <link
     rel="stylesheet"
     href="https://usafs.sidearmsports.com/sidearmcomponents/css/core.min.css"
   />
+
+  <!-- Optional: Additional styling for spacing -->
+  <style>
+    body {
+      margin: 0;
+      padding: 1rem;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+    }
+    section {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <section aria-labelledby="h2_events" class="s-events">
+    <h2 id="h2_events" class="visually-hidden">Events</h2>
+    <events-component data-events-id="1"></events-component>
+  </section>
+
+  <!-- Sidearm Events Script -->
+  <script>
+    window.obj = window.obj || {};
+    window.obj["events-component"] = window.obj["events-component"] || {
+      props: {
+        api: {
+          endpoint: "https://usafs.sidearmsports.com/services/json/events/index",
+        },
+        numberOfEventsToShow: 3,
+        showHeader: false,
+        showFooterLink: true,
+        footerLinkText: "View All Events",
+        footerLinkUrl: "/events",
+        enableFilter: false,
+        cardLayout: "vertical",
+      },
+    };
+  </script>
+
+  <!-- Sidearm Core JS -->
   <script
     src="https://usafs.sidearmsports.com/sidearmcomponents/js/core.min.js"
     defer
   ></script>
-</head>
-<body>
-  <!-- Paste your full <section> block here -->
-  <section aria-labelledby="h2_events" class="s-events">
-    <!-- …the full script + markup you provided… -->
-  </section>
 </body>
 </html>
