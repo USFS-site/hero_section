@@ -2,66 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hero Block</title>
+  <title>Hero Section</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
     }
-    .hero-container {
+    .hero {
       display: flex;
-      flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
-      background-color: #f9f9f9;
+      justify-content: space-between;
       padding: 2rem;
+      background-color: #f5f5f5;
     }
-    .hero-image {
-      flex: 1 1 50%;
-      padding: 1rem;
+    .hero-text {
+      max-width: 500px;
     }
-    .hero-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    .hero-content {
-      flex: 1 1 50%;
-      padding: 1rem;
-    }
-    .hero-title {
+    .hero-text h1 {
       font-size: 2rem;
-      font-weight: bold;
       margin-bottom: 1rem;
     }
-    .hero-description {
+    .hero-text p {
+      margin-bottom: 1.5rem;
       font-size: 1rem;
-      margin-bottom: 1rem;
     }
-    .hero-links a {
+    .hero-text a {
       display: inline-block;
       margin-right: 1rem;
-      color: #0056b3;
+      color: #0077cc;
       text-decoration: none;
       font-weight: bold;
+    }
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="hero-container">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>National Team</h1>
+      <p>
+        Team USA is defined as those skaters who are selected by the International Committee,
+        International Committee Management Subcommittee and/or the International Skating Union
+        to represent the United States at ISU events.
+      </p>
+      <a href="#">National Team Qualifying</a>
+      <a href="/sports/figure-skating/roster/2023-24">Athlete Bios</a>
+    </div>
     <div class="hero-image">
-      <img src="https://www.usfigureskating.org/images/2025/7/29/GettyImages-2210996264.png?width=1920&height=1080&mode=crop&scale=both&format=jpg&quality=80" alt="National Team Hero">
+      <img src="https://www.usfigureskating.org/images/2025/7/29/GettyImages-2210996264.png?width=800&height=450&mode=crop&scale=both&format=jpg&quality=80" alt="National Team Hero">
     </div>
-    <div class="hero-content">
-      <div class="hero-title">National Team</div>
-      <div class="hero-description">
-        Team USA is defined as those skaters who are selected by the International Committee, International Committee Management Subcommittee and/or the International Skating Union to represent the United States at ISU events.
-      </div>
-      <div class="hero-links">
-        <a href="#">National Team Qualifying</a>
-        <a href="/sports/figure-skating/roster/2023-24">Athlete Bios</a>
-      </div>
-    </div>
-  </div>
+  </section>
 </body>
 </html>
+
