@@ -1,61 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hero Events Embed</title>
-
-  <!-- Sidearm Core CSS -->
-  <link
-    rel="stylesheet"
-    href="https://usafs.sidearmsports.com/sidearmcomponents/css/core.min.css"
-  />
-
-  <!-- Optional: Additional styling for spacing -->
+  <meta charset="UTF-8">
+  <title>Hero Block</title>
   <style>
     body {
       margin: 0;
-      padding: 1rem;
       font-family: Arial, sans-serif;
-      background: #f7f7f7;
     }
-    section {
-      background: white;
-      border-radius: 8px;
+    .hero-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      background-color: #f9f9f9;
+      padding: 2rem;
+    }
+    .hero-image {
+      flex: 1 1 50%;
       padding: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .hero-content {
+      flex: 1 1 50%;
+      padding: 1rem;
+    }
+    .hero-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .hero-description {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .hero-links a {
+      display: inline-block;
+      margin-right: 1rem;
+      color: #0056b3;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <section aria-labelledby="h2_events" class="s-events">
-    <h2 id="h2_events" class="visually-hidden">Events</h2>
-    <events-component data-events-id="1"></events-component>
-  </section>
-
-  <!-- Sidearm Events Script -->
-  <script>
-    window.obj = window.obj || {};
-    window.obj["events-component"] = window.obj["events-component"] || {
-      props: {
-        api: {
-          endpoint: "https://usafs.sidearmsports.com/services/json/events/index",
-        },
-        numberOfEventsToShow: 3,
-        showHeader: false,
-        showFooterLink: true,
-        footerLinkText: "View All Events",
-        footerLinkUrl: "/events",
-        enableFilter: false,
-        cardLayout: "vertical",
-      },
-    };
-  </script>
-
-  <!-- Sidearm Core JS -->
-  <script
-    src="https://usafs.sidearmsports.com/sidearmcomponents/js/core.min.js"
-    defer
-  ></script>
+  <div class="hero-container">
+    <div class="hero-image">
+      <img src="https://www.usfigureskating.org/images/2025/7/29/GettyImages-2210996264.png?width=1920&height=1080&mode=crop&scale=both&format=jpg&quality=80" alt="National Team Hero">
+    </div>
+    <div class="hero-content">
+      <div class="hero-title">National Team</div>
+      <div class="hero-description">
+        Team USA is defined as those skaters who are selected by the International Committee, International Committee Management Subcommittee and/or the International Skating Union to represent the United States at ISU events.
+      </div>
+      <div class="hero-links">
+        <a href="#">National Team Qualifying</a>
+        <a href="/sports/figure-skating/roster/2023-24">Athlete Bios</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
