@@ -2,185 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hero Block</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hero Section</title>
   <style>
-    :root {
-      --overlay: rgba(0,0,0,.6);
-      --radius: 6px;
-      --transition: .25s ease;
-      --btn-padding: 14px 24px;
-      --btn-radius: 6px;
-      --primary: #ff3b2f;
-      --text-light: #fff;
-      --shadow: 0 12px 40px -10px rgba(0,0,0,0.4);
-      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    }
-    *{box-sizing:border-box;}
     body {
-      margin:0;
-      background:#000;
-      color: var(--text-light);
-    }
-    .hero {
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      min-height: 420px;
-      padding: 2rem;
-      gap: 2rem;
-      background: #111;
-    }
-    .hero::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      background-size: cover;
-      background-position: center;
-      filter: brightness(1);
-      z-index:0;
-      transition: var(--transition);
-    }
-    .hero::after {
-      content:"";
-      position:absolute;
-      inset:0;
-      background: linear-gradient(to right, var(--overlay) 0%, rgba(0,0,0,0) 60%);
-      z-index:1;
-    }
-    .hero-content {
-      position: relative;
-      z-index:2;
-      max-width: 720px;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .hero h1 {
-      margin:0;
-      font-size: clamp(1.9rem, 3.2vw, 3.2rem);
-      line-height: 1.1;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    .hero p {
-      margin:0;
-      font-size: clamp(1rem, 1.1vw, 1.15rem);
-      line-height: 1.5;
-      max-width: 100%;
-    }
-    .hero .buttons {
-      margin-top: .5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .4em;
-      padding: var(--btn-padding);
-      font-size: 0.95rem;
-      font-weight: 600;
-      border-radius: var(--btn-radius);
-      cursor: pointer;
-      text-decoration: none;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      position: relative;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg,#ff4f3f,#e62f1f);
-      color:#fff;
-      border-color: transparent;
-      box-shadow: var(--shadow);
-    }
-    .btn-primary:hover {
-      filter: brightness(1.05);
-    }
-    .btn-secondary {
-      background: transparent;
-      color:#fff;
-      border: 2px solid #fff;
-    }
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
+      margin: 0;
+      font-family: Arial, sans-serif;
     }
 
-    @media (max-width: 900px){
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+      padding: 40px 20px;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+      padding: 20px;
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .hero-text a.button {
+      display: inline-block;
+      background-color: #005bac;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .hero-image {
+      flex: 1 1 400px;
+      padding: 20px;
+      max-width: 600px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
       .hero {
         flex-direction: column;
-        padding:1.5rem;
-        min-height: auto;
+        text-align: center;
       }
-      .hero::after {
-        background: linear-gradient(to bottom, var(--overlay) 0%, rgba(0,0,0,0) 70%);
+
+      .hero-text, .hero-image {
+        max-width: 100%;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Example usage: set data-headline, data-subheadline, data-image, and buttons via JSON-like attribute -->
-  <div class="hero"
-       data-headline="Skating Opportunities"
-       data-subheadline="From the Excel program to the Adult Skating program, there are lots of opportunities to participate in figure skating. Explore the pathways below to find what suits your personal skating journey."
-       data-image="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/usafs.sidearmsports.com/images/2025/7/30/Sophie_Joline_von_Felten_25USChamps_JWFS-3.jpg?width=1920&height=1080&mode=crop&scale=both&format=jpg&quality=80"
-       data-buttons='[{"text":"National Team Qualifying","href":"#"},{"text":"Athlete Bios","href":"/sports/figure-skating/roster/2023-24","secondary":true}]'>
-    <div class="hero-content">
-      <h1 id="hero-headline">Headline</h1>
-      <p id="hero-sub">Subheadline goes here.</p>
-      <div class="buttons" id="hero-buttons"></div>
+  <section class="hero">
+    <div class="hero-image">
+      <img src="https://via.placeholder.com/600x400" alt="Figure skating moment" />
     </div>
-  </div>
-
-  <script>
-    function initHero(el){
-      const headline = el.dataset.headline || "";
-      const sub = el.dataset.subheadline || "";
-      const img = el.dataset.image || "";
-      const buttons = (() => {
-        try {
-          return JSON.parse(el.dataset.buttons || "[]");
-        } catch {
-          return [];
-        }
-      })();
-
-      if(img){
-        el.style.setProperty('--bg-img','url('+img+')');
-        // set background via pseudo-element
-        el.style.background = 'none';
-        el.style.position='relative';
-        // apply to ::before via inline style hack
-        const before = document.createElement('div');
-        before.style.position='absolute';
-        before.style.inset='0';
-        before.style.backgroundImage='url('+img+')';
-        before.style.backgroundSize='cover';
-        before.style.backgroundPosition='center';
-        before.style.filter='brightness(1)';
-        before.style.zIndex='0';
-        before.className='hero-bg';
-        el.prepend(before);
-      }
-
-      document.getElementById('hero-headline').textContent = headline;
-      document.getElementById('hero-sub').textContent = sub;
-
-      const btnContainer = document.getElementById('hero-buttons');
-      btnContainer.innerHTML = "";
-      buttons.forEach(b => {
-        const a = document.createElement('a');
-        a.textContent = b.text || "Button";
-        a.href = b.href || "#";
-        a.className = 'btn ' + (b.secondary ? 'btn-secondary' : 'btn-primary');
-        btnContainer.appendChild(a);
-      });
-    }
-
-    document.querySelectorAll('.hero').forEach(initHero);
-  </script>
+    <div class="hero-text">
+      <h1>Supporting Athletes, Building Dreams</h1>
+      <p>Explore our community-driven efforts to uphold integrity and fairness in figure skating. Learn how grievances are addressed and resolved to support a safe and inclusive environment.</p>
+      <a href="https://www.usfigureskating.org/grievances" class="button">View Grievance List</a>
+    </div>
+  </section>
 </body>
 </html>
