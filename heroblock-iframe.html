@@ -1,62 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hero Section</title>
+  <meta charset="UTF-8" />
+  <title>Hero Block</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
+    :root {
+      --overlay: rgba(0,0,0,.6);
+      --radius: 6px;
+      --transition: .25s ease;
+      --btn-padding: 14px 24px;
+      --btn-radius: 6px;
+      --primary: #ff3b2f;
+      --text-light: #fff;
+      --shadow: 0 12px 40px -10px rgba(0,0,0,0.4);
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    }
+    *{box-sizing:border-box;}
     body {
-      margin: 0;
-      font-family: sans-serif;
+      margin:0;
+      background:#000;
+      color: var(--text-light);
     }
     .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      min-height: 420px;
+      padding: 2rem;
+      gap: 2rem;
+      background: #111;
+    }
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(1);
+      z-index:0;
+      transition: var(--transition);
+    }
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(to right, var(--overlay) 0%, rgba(0,0,0,0) 60%);
+      z-index:1;
+    }
+    .hero-content {
+      position: relative;
+      z-index:2;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .hero h1 {
+      margin:0;
+      font-size: clamp(1.9rem, 3.2vw, 3.2rem);
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      margin:0;
+      font-size: clamp(1rem, 1.1vw, 1.15rem);
+      line-height: 1.5;
+      max-width: 100%;
+    }
+    .hero .buttons {
+      margin-top: .5rem;
       display: flex;
       flex-wrap: wrap;
+      gap: .75rem;
+    }
+    .btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 2rem;
-      background-color: #f5f5f5;
-    }
-    .hero-text {
-      max-width: 500px;
-    }
-    .hero-text h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .hero-text p {
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-    .hero-text a {
-      display: inline-block;
-      margin-right: 1rem;
-      color: #0077cc;
+      gap: .4em;
+      padding: var(--btn-padding);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: var(--btn-radius);
+      cursor: pointer;
       text-decoration: none;
-      font-weight: bold;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      position: relative;
     }
-    .hero-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
+    .btn-primary {
+      background: linear-gradient(135deg,#ff4f3f,#e62f1f);
+      color:#fff;
+      border-color: transparent;
+      box-shadow: var(--shadow);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+    .btn-secondary {
+      background: transparent;
+      color:#fff;
+      border: 2px solid #fff;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 900px){
+      .hero {
+        flex-direction: column;
+        padding:1.5rem;
+        min-height: auto;
+      }
+      .hero::after {
+        background: linear-gradient(to bottom, var(--overlay) 0%, rgba(0,0,0,0) 70%);
+      }
     }
   </style>
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-text">
-      <h1>National Team</h1>
-      <p>
-        Team USA is defined as those skaters who are selected by the International Committee,
-        International Committee Management Subcommittee and/or the International Skating Union
-        to represent the United States at ISU events.
-      </p>
-      <a href="#">National Team Qualifying</a>
-      <a href="/sports/figure-skating/roster/2023-24">Athlete Bios</a>
+
+  <!-- Example usage: set data-headline, data-subheadline, data-image, and buttons via JSON-like attribute -->
+  <div class="hero"
+       data-headline="Skating Opportunities"
+       data-subheadline="From the Excel program to the Adult Skating program, there are lots of opportunities to participate in figure skating. Explore the pathways below to find what suits your personal skating journey."
+       data-image="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/usafs.sidearmsports.com/images/2025/7/30/Sophie_Joline_von_Felten_25USChamps_JWFS-3.jpg?width=1920&height=1080&mode=crop&scale=both&format=jpg&quality=80"
+       data-buttons='[{"text":"National Team Qualifying","href":"#"},{"text":"Athlete Bios","href":"/sports/figure-skating/roster/2023-24","secondary":true}]'>
+    <div class="hero-content">
+      <h1 id="hero-headline">Headline</h1>
+      <p id="hero-sub">Subheadline goes here.</p>
+      <div class="buttons" id="hero-buttons"></div>
     </div>
-    <div class="hero-image">
-      <img src="https://www.usfigureskating.org/images/2025/7/29/GettyImages-2210996264.png?width=800&height=450&mode=crop&scale=both&format=jpg&quality=80" alt="National Team Hero">
-    </div>
-  </section>
+  </div>
+
+  <script>
+    function initHero(el){
+      const headline = el.dataset.headline || "";
+      const sub = el.dataset.subheadline || "";
+      const img = el.dataset.image || "";
+      const buttons = (() => {
+        try {
+          return JSON.parse(el.dataset.buttons || "[]");
+        } catch {
+          return [];
+        }
+      })();
+
+      if(img){
+        el.style.setProperty('--bg-img','url('+img+')');
+        // set background via pseudo-element
+        el.style.background = 'none';
+        el.style.position='relative';
+        // apply to ::before via inline style hack
+        const before = document.createElement('div');
+        before.style.position='absolute';
+        before.style.inset='0';
+        before.style.backgroundImage='url('+img+')';
+        before.style.backgroundSize='cover';
+        before.style.backgroundPosition='center';
+        before.style.filter='brightness(1)';
+        before.style.zIndex='0';
+        before.className='hero-bg';
+        el.prepend(before);
+      }
+
+      document.getElementById('hero-headline').textContent = headline;
+      document.getElementById('hero-sub').textContent = sub;
+
+      const btnContainer = document.getElementById('hero-buttons');
+      btnContainer.innerHTML = "";
+      buttons.forEach(b => {
+        const a = document.createElement('a');
+        a.textContent = b.text || "Button";
+        a.href = b.href || "#";
+        a.className = 'btn ' + (b.secondary ? 'btn-secondary' : 'btn-primary');
+        btnContainer.appendChild(a);
+      });
+    }
+
+    document.querySelectorAll('.hero').forEach(initHero);
+  </script>
 </body>
 </html>
-
